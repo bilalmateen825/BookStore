@@ -29,26 +29,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BookEntity) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.BookEntity)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.BookId">
+                        <img src="~/img/Edit.png" width="22px" height="22px" />
+                    </a>  
+                    <a asp-page="./Details" asp-route-id="@item.BookId">
+                        <img src="~/img/Details.png" width="22px" height="22px" />
+                    </a>  
+                    <a asp-page="./Delete" asp-route-id="@item.BookId">
+                        <img src="~/img/Remove.png" width="22px" height="22px" />
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

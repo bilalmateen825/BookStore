@@ -37,7 +37,8 @@
         </dd>
     </dl>
 </div>
+<br />
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.BookEntity?.BookId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.BookEntity?.BookId" class="btn btn-primary">Edit</a>
+    <a asp-page="./Index" class="btn btn-danger mx-1">Back</a>
 </div>
