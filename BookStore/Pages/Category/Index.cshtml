@@ -25,11 +25,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">
+                        <img src="~/img/Edit.png" width="22px" height="22px" />
+                    </a>
+                    <a asp-page="./Details" asp-route-id="@item.ID">
+                        <img src="~/img/Details.png" width="22px" height="22px" />
+                    </a>
+                    <a asp-page="./Delete" asp-route-id="@item.ID">
+                        <img src="~/img/Remove.png" width="22px" height="22px" />
+                    </a>
+                </td>
         </tr>
 }
     </tbody>

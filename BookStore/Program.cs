@@ -11,6 +11,10 @@ builder.Services.AddDbContext<BookDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole(); // Add console logger
+});
 
 var app = builder.Build();
 

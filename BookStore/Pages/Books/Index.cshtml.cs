@@ -23,14 +23,10 @@ namespace BookStore.Pages.Books
 
         public async Task OnGetAsync()
         {
+           
             if (_context.BooksCollections != null)
             {
-                BookEntity = await _context.BooksCollections.ToListAsync();
-
-                //foreach(var obj in BookEntity)
-                //{
-                //    obj.BookCategory = await _context.BooksCategories.FirstOrDefaultAsync(x => x.CategoryID == obj.CategoryID);
-                //}
+                BookEntity = await _context.BooksCollections.Include(x=>x.BookCategory).ToListAsync();              
             }
         }
     }
