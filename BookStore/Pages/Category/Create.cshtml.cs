@@ -8,13 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using BookStore.DataLayer;
 using BookStore.Entity;
 
-namespace BookStore.Pages.Books
+namespace BookStore.Pages.Category
 {
     public class CreateModel : PageModel
     {
         private readonly BookStore.DataLayer.BookDBContext _context;
-
-        public List<SelectListItem> BookCategoryItemSource { get; set; }
 
         public CreateModel(BookStore.DataLayer.BookDBContext context)
         {
@@ -23,28 +21,22 @@ namespace BookStore.Pages.Books
 
         public IActionResult OnGet()
         {
-            BookCategoryItemSource = _context.BooksCategories.Select(x => new SelectListItem
-            {
-                Text = x.CategoryName,
-                Value = x.ID.ToString()
-            }).ToList();
-
             return Page();
         }
 
         [BindProperty]
-        public BookEntity BookEntity { get; set; } = default!;
+        public BookCategory BookCategory { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.BooksCollections == null || BookEntity == null)
+          if (!ModelState.IsValid || _context.BooksCategories == null || BookCategory == null)
             {
                 return Page();
             }
 
-            _context.BooksCollections.Add(BookEntity);
+            _context.BooksCategories.Add(BookCategory);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

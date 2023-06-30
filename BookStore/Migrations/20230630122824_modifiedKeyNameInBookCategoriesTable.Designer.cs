@@ -4,6 +4,7 @@ using BookStore.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(BookDBContext))]
-    partial class BookDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230630122824_modifiedKeyNameInBookCategoriesTable")]
+    partial class modifiedKeyNameInBookCategoriesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,9 +55,6 @@ namespace BookStore.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("CategoryID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Rating")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,18 +69,7 @@ namespace BookStore.Migrations
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("CategoryID");
-
                     b.ToTable("BooksCollections");
-                });
-
-            modelBuilder.Entity("BookStore.Entity.BookEntity", b =>
-                {
-                    b.HasOne("BookStore.Entity.BookCategory", "BookCategory")
-                        .WithMany()
-                        .HasForeignKey("CategoryID");
-
-                    b.Navigation("BookCategory");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,5 +13,6 @@ namespace BookStore.DataLayer
         /// Create BooksCollection Table.
         /// </summary>
         public DbSet<BookEntity> BooksCollections { get; set; }
+        public DbSet<BookCategory> BooksCategories { get; set; }
     }
 }

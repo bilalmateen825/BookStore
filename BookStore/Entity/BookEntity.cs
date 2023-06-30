@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Entity
 {
@@ -25,6 +26,12 @@ namespace BookStore.Entity
         [Required(ErrorMessage = "Please enter Rating between (1-5)")]
         [Range(1,5,ErrorMessage ="Please enter rating between 1 to 5.")]
         public string Rating { get; set; }
+
+        [DisplayName("Category")]
+        public int? CategoryID { get; set; }
+
+        [ForeignKey("CategoryID")]
+        public virtual BookCategory? BookCategory { get; set; } //this will hold book category object from Db whole Category Id matches BookCategoryId
     }
 
     public class DateValidation : ValidationAttribute
