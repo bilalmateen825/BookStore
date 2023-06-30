@@ -12,7 +12,6 @@ using BookStore;
 using BookStore.Classes.Sorting;
 using BookStore.Classes.Data;
 using Microsoft.Extensions.Caching.Memory;
-using System.Collections.Immutable;
 
 namespace BookStore.Pages.Books
 {
@@ -21,7 +20,7 @@ namespace BookStore.Pages.Books
     {
         private readonly BookStore.DataLayer.BookDBContext _context;
         private readonly IMemoryCache _cache;
-             
+
         public CustomDictionary<string, SortInfo> DictSortInfo { get; set; }
 
         public IndexModel(BookStore.DataLayer.BookDBContext context, IMemoryCache memoryCache)
@@ -32,7 +31,7 @@ namespace BookStore.Pages.Books
 
         public IList<BookEntity> BookEntity { get; set; } = default!;
 
-        public async Task OnGetAsync(string sortAttribute)
+        public async Task OnGetAsync(string sortAttribute, string filterString)
         {
             SortInfo sortInfo = null;
             ENBookAttributes enBookAttributes = ENBookAttributes.None;
@@ -68,7 +67,17 @@ namespace BookStore.Pages.Books
 
             if (_context.BooksCollections != null)
             {
-                BookEntity = await _context.BooksCollections.Include(x => x.BookCategory).ToListAsync();
+                if (!string.IsNullOrEmpty(filterString))
+                    BookEntity = await _context.BooksCollections.Include(x => x.BookCategory).
+                            Where(
+                                    x => x.Title.Contains(filterString) ||
+                                    x.AuthorName.Contains(filterString) ||
+                                    x.BookCategory.CategoryName.Contains(filterString) ||
+                                    x.Rating.Contains(filterString)
+                                    )
+                            .ToListAsync();
+                else
+                    BookEntity = await _context.BooksCollections.Include(x => x.BookCategory).ToListAsync();
             }
 
             switch (enBookAttributes)
