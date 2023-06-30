@@ -14,19 +14,29 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BookEntity[0].Title)
+                <a asp-page="./Index" asp-route-sortAttribute="@ENBookAttributes.Title">
+                    @Html.DisplayNameFor(model => model.BookEntity[0].Title)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookEntity[0].AuthorName)
+                <a asp-page="./Index" asp-route-sortAttribute="@ENBookAttributes.Author">
+                    @Html.DisplayNameFor(model => model.BookEntity[0].AuthorName)
+                </a>                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookEntity[0].BookCategory.CategoryName)
+                <a asp-page="./Index" asp-route-sortAttribute="@ENBookAttributes.Category">
+                    @Html.DisplayNameFor(model => model.BookEntity[0].BookCategory.CategoryName)
+                </a>                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookEntity[0].ReleaseDate)
+                <a asp-page="./Index" asp-route-sortAttribute="@ENBookAttributes.ReleaseDate">
+                    @Html.DisplayNameFor(model => model.BookEntity[0].ReleaseDate)
+                </a>               
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookEntity[0].Rating)
+                <a asp-page="./Index" asp-route-sortAttribute="@ENBookAttributes.Rating">
+                    @Html.DisplayNameFor(model => model.BookEntity[0].Rating)
+                </a>                
             </th>
             <th></th>
         </tr>
@@ -53,10 +63,10 @@
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.BookId">
                         <img src="~/img/Edit.png" width="22px" height="22px" />
-                    </a>  
+                    </a>
                     <a asp-page="./Details" asp-route-id="@item.BookId">
                         <img src="~/img/Details.png" width="22px" height="22px" />
-                    </a>  
+                    </a>
                     <a asp-page="./Delete" asp-route-id="@item.BookId">
                         <img src="~/img/Remove.png" width="22px" height="22px" />
                     </a>
